@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class GuitarComponent extends Component {
   render() {
-    return (<h1>This is my GuitarComponent</h1>);
+    return (<h1>{this.props.name}</h1>);
   }
 }
 

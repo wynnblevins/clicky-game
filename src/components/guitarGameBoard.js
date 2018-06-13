@@ -23,6 +23,10 @@ const styles = theme => ({
   },
 });
 
+function onGuitarDoubleClick() {
+  alert('Ey yo dawg, i heard you like clicking things, but you just gotta click the shiz once.');
+}
+
 function GuitarGameBoard(props) {
   const { guitars } = props;
 
@@ -35,7 +39,8 @@ function GuitarGameBoard(props) {
         {guitars.map((guitar, i) => (
           <Grid key={i} item xs={3}>
             <GuitarComponent name={guitar.name} 
-              image={guitar.image}></GuitarComponent>
+              image={guitar.image} onDoubleClick={onGuitarDoubleClick}>
+            </GuitarComponent>
           </Grid>
         ))}
         

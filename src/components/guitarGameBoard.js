@@ -32,9 +32,10 @@ function GuitarGameBoard(props) {
         
       </Typography>
       <Grid container spacing={16}>
-        {guitars.map((guitar) => (
-          <Grid item xs={3}>
-            <GuitarComponent name={guitar.name}></GuitarComponent>
+        {guitars.map((guitar, i) => (
+          <Grid key={i} item xs={3}>
+            <GuitarComponent name={guitar.name} 
+              image={guitar.image}></GuitarComponent>
           </Grid>
         ))}
         

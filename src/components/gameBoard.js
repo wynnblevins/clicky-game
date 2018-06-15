@@ -29,7 +29,8 @@ class GameBoard extends Component {
     super(props);
     this.state = {
       guitars: this.props.guitars,
-      show: false   
+      showLoser: false,
+      showWinner: false
     }
   }
 
@@ -46,9 +47,19 @@ class GameBoard extends Component {
     this.setState({guitars: newGuitarsArr});
   }  
 
+  checkIfGameWon = () => {
+    for (let i = 0; i < this.state.guitars.length; i++) {
+      if (!this.state.guitars[i].hasBeenClicked) {
+        return false; 
+      }
+    };
+
+    return true;
+  } 
+
   handleClick = (guitarName) => {
     console.log(guitarName);
-    
+
     this.state.guitars.map((guitar) => {
       if (guitarName === guitar.name) {
         // if it has already been clicked => game over
@@ -60,13 +71,23 @@ class GameBoard extends Component {
           
         }
       }
+
+      if (this.checkIfGameWon()) {
+        this.showModal(true);
+      }
     });
     
     this.shuffle();
   }
 
-  showModal = () => {
-    this.setState({ show: true });
+  showModal = (winner) => {
+    console.log(this.state);
+    
+    if (winner) {
+      this.setState({ showWinner: true });
+    } else {
+      this.setState({ showLoser: true });
+    }
   };
 
   hideModal = () => {
@@ -75,14 +96,14 @@ class GameBoard extends Component {
   };
 
   onGuitarDoubleClick = () => {
-    this.showModal();
+    let winner = false;
+    this.showModal(winner);
   }
   
   render() {
     return (
       <div>
         <Typography variant="subheading" gutterBottom>
-          
         </Typography>
         <Grid container spacing={16}>
           {this.props.guitars.map((guitar, i) => (
@@ -94,14 +115,13 @@ class GameBoard extends Component {
               </GuitarComponent>
             </Grid>
           ))}
-          
         </Grid>
-        <GameOverModal show={this.state.show} handleClose={this.hideModal}>
+        <GameOverModal show={this.state.showLoser} handleClose={this.hideModal}>
           <h1>You Lose!</h1>
         </GameOverModal>
-        <Typography variant="subheading" gutterBottom>
-          CSS Grid Layout:
-        </Typography>
+        <GameOverModal show={this.state.showWinner} handleClose={this.hideModal}>
+          <h1>You Win!</h1>
+        </GameOverModal>
       </div>  
     );
   }

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import GuitarComponent from './guitarComponent';
+import GameOverModal from './gameOverModal';
 
 const styles = theme => ({
   container: {
@@ -28,7 +29,8 @@ class GameBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      guitars: this.props.guitars,  
+      guitars: this.props.guitars,
+      show: false   
     }
   }
 
@@ -65,9 +67,18 @@ class GameBoard extends Component {
     console.log(this.props.guitars);
   }
 
-  onGuitarDoubleClick() {
-    alert(`Ey yo dawg, i heard you like clicking things, 
-      but you just gotta click the shiz once.`);
+  showModal = () => {
+    console.log('inside show modal');
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    console.log('inside close modal');
+    this.setState({ show: false });
+  };
+
+  onGuitarDoubleClick = () => {
+    this.showModal();
   }
   
   render() {
@@ -88,6 +99,9 @@ class GameBoard extends Component {
           ))}
           
         </Grid>
+        <GameOverModal show={this.state.show} handleClose={this.hideModal}>
+          <h1>You Lose!</h1>
+        </GameOverModal>
         <Typography variant="subheading" gutterBottom>
           CSS Grid Layout:
         </Typography>

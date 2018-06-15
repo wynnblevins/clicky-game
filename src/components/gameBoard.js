@@ -24,7 +24,6 @@ const styles = theme => ({
   },
 });
 
-
 class GameBoard extends Component {
   constructor(props) {
     super(props);
@@ -62,19 +61,17 @@ class GameBoard extends Component {
         }
       }
     });
-    this.shuffle();
     
-    console.log(this.props.guitars);
+    this.shuffle();
   }
 
   showModal = () => {
-    console.log('inside show modal');
     this.setState({ show: true });
   };
 
   hideModal = () => {
-    console.log('inside close modal');
     this.setState({ show: false });
+    window.location.reload();
   };
 
   onGuitarDoubleClick = () => {

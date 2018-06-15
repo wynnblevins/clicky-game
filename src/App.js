@@ -5,7 +5,7 @@ import GuitarGameBoard from './components/gameBoard';
 class App extends Component {
   render() {
     let guitars = [
-      { name: 'Stratocaster', image: '../public/images/stratocaster_rsz.png', hasBeenClicked: false }, 
+      { name: 'Stratocaster', image: '../images/stratocaster_rsz.png', hasBeenClicked: false }, 
       { name: 'SG', image: '../images/sg_rsz.png', hasBeenClicked: false },
       { name: 'Les Paul', image: '../images/lesPaul_rsz.png', hasBeenClicked: false },
       { name: 'ES-335', image: '../images/es335_rsz.png', hasBeenClicked: false },
